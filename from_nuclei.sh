@@ -5,13 +5,14 @@
 # $ column -s "	" -t
 
 awk '
-BEGIN {OFS="\t"}
+BEGIN { OFS="\t" }
 {
 	# Remove the surrounding [] brackets of the first three fields
 	for (i = 1; i <= 3; i++)
 		$i = substr($i, 2, length($i) - 2)
 
-	printf "%s\t%s\t%s\t%s\t", $1, $2, $3, $4
+	ORS = "\t"
+	print $1, $2, $3, $4
 
 	# If there is additional information at the end,
 	# print it separated with one space.
